@@ -67,15 +67,17 @@ public interface DatalogListener extends ParseTreeListener {
 	 */
 	void exitR_rules(DatalogParser.R_rulesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DatalogParser#query}.
+	 * Enter a parse tree produced by the {@code InicioQuery}
+	 * labeled alternative in {@link DatalogParser#query}.
 	 * @param ctx the parse tree
 	 */
-	void enterQuery(DatalogParser.QueryContext ctx);
+	void enterInicioQuery(DatalogParser.InicioQueryContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DatalogParser#query}.
+	 * Exit a parse tree produced by the {@code InicioQuery}
+	 * labeled alternative in {@link DatalogParser#query}.
 	 * @param ctx the parse tree
 	 */
-	void exitQuery(DatalogParser.QueryContext ctx);
+	void exitInicioQuery(DatalogParser.InicioQueryContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DatalogParser#atom}.
 	 * @param ctx the parse tree
@@ -97,15 +99,41 @@ public interface DatalogListener extends ParseTreeListener {
 	 */
 	void exitAtoms(DatalogParser.AtomsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DatalogParser#variableOrLiteral}.
+	 * Enter a parse tree produced by the {@code VariableEnun}
+	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.
 	 * @param ctx the parse tree
 	 */
-	void enterVariableOrLiteral(DatalogParser.VariableOrLiteralContext ctx);
+	void enterVariableEnun(DatalogParser.VariableEnunContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DatalogParser#variableOrLiteral}.
+	 * Exit a parse tree produced by the {@code VariableEnun}
+	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.
 	 * @param ctx the parse tree
 	 */
-	void exitVariableOrLiteral(DatalogParser.VariableOrLiteralContext ctx);
+	void exitVariableEnun(DatalogParser.VariableEnunContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LiteralEnun}
+	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterLiteralEnun(DatalogParser.LiteralEnunContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LiteralEnun}
+	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitLiteralEnun(DatalogParser.LiteralEnunContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code AggregateEnun}
+	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterAggregateEnun(DatalogParser.AggregateEnunContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AggregateEnun}
+	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitAggregateEnun(DatalogParser.AggregateEnunContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DatalogParser#variableOrLiterals}.
 	 * @param ctx the parse tree
@@ -147,15 +175,17 @@ public interface DatalogListener extends ParseTreeListener {
 	 */
 	void exitVariable(DatalogParser.VariableContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DatalogParser#predicate}.
+	 * Enter a parse tree produced by the {@code Predicado}
+	 * labeled alternative in {@link DatalogParser#predicate}.
 	 * @param ctx the parse tree
 	 */
-	void enterPredicate(DatalogParser.PredicateContext ctx);
+	void enterPredicado(DatalogParser.PredicadoContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DatalogParser#predicate}.
+	 * Exit a parse tree produced by the {@code Predicado}
+	 * labeled alternative in {@link DatalogParser#predicate}.
 	 * @param ctx the parse tree
 	 */
-	void exitPredicate(DatalogParser.PredicateContext ctx);
+	void exitPredicado(DatalogParser.PredicadoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DatalogParser#literal}.
 	 * @param ctx the parse tree

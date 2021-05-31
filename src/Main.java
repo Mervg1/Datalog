@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         try {
 
+            //?-curso(?cc,?nombre,?unidades,?departamento),grupo(?cc,?idC,?semestre,"Abel Bueno").
 
             CharStream input = CharStreams.fromStream(System.in);
             DatalogLexer lexer = new DatalogLexer(input);
@@ -20,6 +21,11 @@ public class Main {
 
             TablaTransicion tabla = getTablaTrancision(n,eval);
             System.out.println(tabla);*/
+
+            ParseTreeWalker walker = new ParseTreeWalker();
+            Listener listener = new Listener();
+            walker.walk(listener, tree);
+
 
 
         /*

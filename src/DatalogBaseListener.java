@@ -87,13 +87,13 @@ public class DatalogBaseListener implements DatalogListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterQuery(DatalogParser.QueryContext ctx) { }
+	@Override public void enterInicioQuery(DatalogParser.InicioQueryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitQuery(DatalogParser.QueryContext ctx) { }
+	@Override public void exitInicioQuery(DatalogParser.InicioQueryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -123,13 +123,37 @@ public class DatalogBaseListener implements DatalogListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableOrLiteral(DatalogParser.VariableOrLiteralContext ctx) { }
+	@Override public void enterVariableEnun(DatalogParser.VariableEnunContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableOrLiteral(DatalogParser.VariableOrLiteralContext ctx) { }
+	@Override public void exitVariableEnun(DatalogParser.VariableEnunContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLiteralEnun(DatalogParser.LiteralEnunContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLiteralEnun(DatalogParser.LiteralEnunContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAggregateEnun(DatalogParser.AggregateEnunContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAggregateEnun(DatalogParser.AggregateEnunContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -183,13 +207,13 @@ public class DatalogBaseListener implements DatalogListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPredicate(DatalogParser.PredicateContext ctx) { }
+	@Override public void enterPredicado(DatalogParser.PredicadoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPredicate(DatalogParser.PredicateContext ctx) { }
+	@Override public void exitPredicado(DatalogParser.PredicadoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

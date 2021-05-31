@@ -453,20 +453,28 @@ public class DatalogParser extends Parser {
 	}
 
 	public static class QueryContext extends ParserRuleContext {
-		public AtomContext atom() {
-			return getRuleContext(AtomContext.class,0);
-		}
 		public QueryContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_query; }
+	 
+		public QueryContext() { }
+		public void copyFrom(QueryContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class InicioQueryContext extends QueryContext {
+		public AtomContext atom() {
+			return getRuleContext(AtomContext.class,0);
+		}
+		public InicioQueryContext(QueryContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterQuery(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterInicioQuery(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitQuery(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitInicioQuery(this);
 		}
 	}
 
@@ -474,6 +482,7 @@ public class DatalogParser extends Parser {
 		QueryContext _localctx = new QueryContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_query);
 		try {
+			_localctx = new InicioQueryContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(71);
@@ -622,26 +631,56 @@ public class DatalogParser extends Parser {
 	}
 
 	public static class VariableOrLiteralContext extends ParserRuleContext {
-		public VariableContext variable() {
-			return getRuleContext(VariableContext.class,0);
-		}
-		public LiteralContext literal() {
-			return getRuleContext(LiteralContext.class,0);
-		}
-		public AggregateVariableContext aggregateVariable() {
-			return getRuleContext(AggregateVariableContext.class,0);
-		}
 		public VariableOrLiteralContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_variableOrLiteral; }
+	 
+		public VariableOrLiteralContext() { }
+		public void copyFrom(VariableOrLiteralContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class VariableEnunContext extends VariableOrLiteralContext {
+		public VariableContext variable() {
+			return getRuleContext(VariableContext.class,0);
+		}
+		public VariableEnunContext(VariableOrLiteralContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterVariableOrLiteral(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterVariableEnun(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitVariableOrLiteral(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitVariableEnun(this);
+		}
+	}
+	public static class LiteralEnunContext extends VariableOrLiteralContext {
+		public LiteralContext literal() {
+			return getRuleContext(LiteralContext.class,0);
+		}
+		public LiteralEnunContext(VariableOrLiteralContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterLiteralEnun(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitLiteralEnun(this);
+		}
+	}
+	public static class AggregateEnunContext extends VariableOrLiteralContext {
+		public AggregateVariableContext aggregateVariable() {
+			return getRuleContext(AggregateVariableContext.class,0);
+		}
+		public AggregateEnunContext(VariableOrLiteralContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterAggregateEnun(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitAggregateEnun(this);
 		}
 	}
 
@@ -653,6 +692,7 @@ public class DatalogParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case Identifier:
+				_localctx = new VariableEnunContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(91);
@@ -664,6 +704,7 @@ public class DatalogParser extends Parser {
 			case BooleanLiteral:
 			case CharacterLiteral:
 			case StringLiteral:
+				_localctx = new LiteralEnunContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(92);
@@ -675,6 +716,7 @@ public class DatalogParser extends Parser {
 			case SUM:
 			case MIN:
 			case MAX:
+				_localctx = new AggregateEnunContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(93);
@@ -891,18 +933,26 @@ public class DatalogParser extends Parser {
 	}
 
 	public static class PredicateContext extends ParserRuleContext {
-		public TerminalNode Predicate() { return getToken(DatalogParser.Predicate, 0); }
 		public PredicateContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_predicate; }
+	 
+		public PredicateContext() { }
+		public void copyFrom(PredicateContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class PredicadoContext extends PredicateContext {
+		public TerminalNode Predicate() { return getToken(DatalogParser.Predicate, 0); }
+		public PredicadoContext(PredicateContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterPredicate(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterPredicado(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitPredicate(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitPredicado(this);
 		}
 	}
 
@@ -910,6 +960,7 @@ public class DatalogParser extends Parser {
 		PredicateContext _localctx = new PredicateContext(_ctx, getState());
 		enterRule(_localctx, 28, RULE_predicate);
 		try {
+			_localctx = new PredicadoContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(113);

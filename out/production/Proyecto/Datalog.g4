@@ -44,7 +44,7 @@ r_rules
     ;
 
 query
-    : '?-' atom
+    : '?-' atom #InicioQuery
     ;
 
 // Definition of atom (or goal) used in horn clauses (or rules)
@@ -59,9 +59,9 @@ atoms
 
 // Types of things allowed within arguments of rules
 variableOrLiteral
-    : variable
-    | literal
-    | aggregateVariable
+    : variable #VariableEnun
+    | literal  #LiteralEnun
+    | aggregateVariable #AggregateEnun
     ;
 
 variableOrLiterals
@@ -85,7 +85,7 @@ variable
     ;
 
 predicate
-    : Predicate
+    : Predicate  #Predicado
     ;
 
 literal
@@ -399,6 +399,9 @@ IdentifierLetterOrDigit
 //
 // Whitespace and comments
 //
+
+
+
 WS
     : [ \t\r\n\u000C]+ -> skip
     ;
