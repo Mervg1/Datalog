@@ -44,7 +44,7 @@ r_rules
     ;
 
 query
-    : '?-' atom #InicioQuery
+    : '?-' atoms #InicioQuery
     ;
 
 // Definition of atom (or goal) used in horn clauses (or rules)
@@ -54,7 +54,7 @@ atom
     ;
 
 atoms
-    : atom ( ',' atom )*
+    : atom ( ',' atom )* #VariosQueries
     ;
 
 // Types of things allowed within arguments of rules

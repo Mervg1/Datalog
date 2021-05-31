@@ -89,15 +89,17 @@ public interface DatalogListener extends ParseTreeListener {
 	 */
 	void exitAtom(DatalogParser.AtomContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DatalogParser#atoms}.
+	 * Enter a parse tree produced by the {@code VariosQueries}
+	 * labeled alternative in {@link DatalogParser#atoms}.
 	 * @param ctx the parse tree
 	 */
-	void enterAtoms(DatalogParser.AtomsContext ctx);
+	void enterVariosQueries(DatalogParser.VariosQueriesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DatalogParser#atoms}.
+	 * Exit a parse tree produced by the {@code VariosQueries}
+	 * labeled alternative in {@link DatalogParser#atoms}.
 	 * @param ctx the parse tree
 	 */
-	void exitAtoms(DatalogParser.AtomsContext ctx);
+	void exitVariosQueries(DatalogParser.VariosQueriesContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code VariableEnun}
 	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.

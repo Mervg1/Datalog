@@ -111,13 +111,13 @@ public class DatalogBaseListener implements DatalogListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAtoms(DatalogParser.AtomsContext ctx) { }
+	@Override public void enterVariosQueries(DatalogParser.VariosQueriesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAtoms(DatalogParser.AtomsContext ctx) { }
+	@Override public void exitVariosQueries(DatalogParser.VariosQueriesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

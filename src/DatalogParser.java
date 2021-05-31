@@ -464,8 +464,8 @@ public class DatalogParser extends Parser {
 		}
 	}
 	public static class InicioQueryContext extends QueryContext {
-		public AtomContext atom() {
-			return getRuleContext(AtomContext.class,0);
+		public AtomsContext atoms() {
+			return getRuleContext(AtomsContext.class,0);
 		}
 		public InicioQueryContext(QueryContext ctx) { copyFrom(ctx); }
 		@Override
@@ -488,7 +488,7 @@ public class DatalogParser extends Parser {
 			setState(71);
 			match(T__5);
 			setState(72);
-			atom();
+			atoms();
 			}
 		}
 		catch (RecognitionException re) {
@@ -572,23 +572,31 @@ public class DatalogParser extends Parser {
 	}
 
 	public static class AtomsContext extends ParserRuleContext {
+		public AtomsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_atoms; }
+	 
+		public AtomsContext() { }
+		public void copyFrom(AtomsContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class VariosQueriesContext extends AtomsContext {
 		public List<AtomContext> atom() {
 			return getRuleContexts(AtomContext.class);
 		}
 		public AtomContext atom(int i) {
 			return getRuleContext(AtomContext.class,i);
 		}
-		public AtomsContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_atoms; }
+		public VariosQueriesContext(AtomsContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterAtoms(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterVariosQueries(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitAtoms(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitVariosQueries(this);
 		}
 	}
 
@@ -597,6 +605,7 @@ public class DatalogParser extends Parser {
 		enterRule(_localctx, 16, RULE_atoms);
 		int _la;
 		try {
+			_localctx = new VariosQueriesContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(83);
@@ -1048,7 +1057,7 @@ public class DatalogParser extends Parser {
 		"\65\3\2\2\2\678\3\2\2\28\7\3\2\2\29\67\3\2\2\2:<\5\4\3\2;:\3\2\2\2<=\3"+
 		"\2\2\2=;\3\2\2\2=>\3\2\2\2>\t\3\2\2\2?@\5\20\t\2@A\7\7\2\2AB\5\22\n\2"+
 		"BC\7\5\2\2C\13\3\2\2\2DF\5\n\6\2ED\3\2\2\2FG\3\2\2\2GE\3\2\2\2GH\3\2\2"+
-		"\2H\r\3\2\2\2IJ\7\b\2\2JK\5\20\t\2K\17\3\2\2\2LM\5\36\20\2MN\7\3\2\2N"+
+		"\2H\r\3\2\2\2IJ\7\b\2\2JK\5\22\n\2K\17\3\2\2\2LM\5\36\20\2MN\7\3\2\2N"+
 		"O\5\26\f\2OP\7\4\2\2PT\3\2\2\2QR\7\13\2\2RT\5\20\t\2SL\3\2\2\2SQ\3\2\2"+
 		"\2T\21\3\2\2\2UZ\5\20\t\2VW\7\6\2\2WY\5\20\t\2XV\3\2\2\2Y\\\3\2\2\2ZX"+
 		"\3\2\2\2Z[\3\2\2\2[\23\3\2\2\2\\Z\3\2\2\2]a\5\34\17\2^a\5 \21\2_a\5\30"+

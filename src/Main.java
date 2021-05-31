@@ -8,6 +8,7 @@ public class Main {
         try {
 
             //?-curso(?cc,?nombre,?unidades,?departamento),grupo(?cc,?idC,?semestre,"Abel Bueno").
+            //profe(?x):-curso(?cc,?nombre,?unidades,?departamento),grupo(?cc,?idC,?semestre,"Abel Bueno").
 
             CharStream input = CharStreams.fromStream(System.in);
             DatalogLexer lexer = new DatalogLexer(input);
