@@ -3,23 +3,9 @@ import java.util.*;
 
 public class Listener extends DatalogBaseListener{
 
-    String variable = "";
-    String literal = "";
-    String predicado = "";
-    String SQL = "";
 
-    String var1 = "";
-    String var2 = "";
-    String var3 = "";
-    String var4 = "";
-    String var5 = "";
-    Boolean var1Variable = false;
-    Boolean var2Variable = false;
-    Boolean var3Variable = false;
-    Boolean var4Variable = false;
-    Boolean var5Variable = false;
     Integer counterVariables = 0;
-    //Nueva Lógica
+
     List<String> predicados = new ArrayList<String>();
     ArrayList<String> tipoDeValores = new ArrayList<String>();
 
@@ -30,23 +16,19 @@ public class Listener extends DatalogBaseListener{
     ArrayList<String> variables = new ArrayList<String>();
     ArrayList<String> literales = new ArrayList<String>();
 
-    //Se agregan las tablas
-    String estudiante[] = {"matricula", "nombre", "carrera"};
-    String curso[] = {"claveCurso", "nombreCurso", "unidades", "departamentos"};
-    String grupo[] = {"claveCurso", "idGrupo", "semestre", "profesorName"};
-    String integrante[] = {"claveCurso", "idGrupo", "semestre", "matricula", "calificacion"};
-    String prerequisito[] = {"claveCurso", "clavePrerequisito"};
-
     String predicadoActual = "";
     ArrayList<String> variablesSelect = new ArrayList<String>();
 
-
-    //Nueva lógica
     ArrayList<String> variablesBusqueda = new ArrayList<String>();
 
     //Array List de elementos where
     ArrayList<String> elementosWhere = new ArrayList<String>();
 
+    public static String query ="";
+
+    Boolean difAttributes = false;
+
+    String iguales = "";
 
     /*
     estudiante(matrícula,nombre,carrera)
@@ -57,7 +39,7 @@ public class Listener extends DatalogBaseListener{
 
      1. Los nombres de los estudiantesqueesténohayancursadolacarreradeISC.
      FUNCIONA
-       ?- respuesta(?nombre) :- estudiates(_, ?nombre, ?carrera),carrera="ISC".
+       ?- respuesta(?nombre) :- estudiante(_, ?nombre, ?carrera),carrera="ISC".
 
      2. RecuperarlosnombresdeloscursosquehaofrecidoelprofesorAbelBueno.
      FUNCIONA
@@ -160,44 +142,6 @@ public class Listener extends DatalogBaseListener{
     }
 
     @Override public void exitInicioQuery(DatalogParser.InicioQueryContext ctx) {
-        System.out.println("Aqui esta el query " + ctx.getText());
-        Integer counterxpredicado = 0;
-        Integer p = 0;
-
-        System.out.println("Estos son los predicados: ");
-        for(String elemento :  predicados ){
-            System.out.print(elemento + " , ");
-
-        }
-        System.out.println();
-
-        System.out.println("Estos son los literales: ");
-        for(String elemento :  literales ){
-            System.out.print(elemento + " , ");
-
-        }
-        System.out.println();
-
-        System.out.println("Estos son los variables: ");
-        for(String elemento :  variables ){
-            System.out.print(elemento  + " , ");
-
-        }
-        System.out.println();
-
-        System.out.println("Estos son los arrayTodo: ");
-        for(String elemento :  arrayTodo ){
-            System.out.print(elemento  + " , ");
-
-        }
-        System.out.println();
-
-        System.out.println("Estos son los variables Select: ");
-        for(String elemento :  variablesSelect ){
-            System.out.print(elemento  + " , ");
-
-        }
-        System.out.println();
 
         //Primero ver si hay más de una tabla
         List<String> estadosUnion = new ArrayList<String>();
@@ -288,7 +232,19 @@ public class Listener extends DatalogBaseListener{
 
     @Override public void enterWheree(DatalogParser.WhereeContext ctx) {
         //System.out.println("Where " + ctx.getText());
-        elementosWhere.add(ctx.getText());
+        String newElem = ctx.getText().replace("\"","\'" );
+        elementosWhere.add(newElem);
+        String spl[] = ctx.getText().split("=");
+        System.out.println("CONTAINS = "+spl[0] + "spl1 " + spl[1]);
+        for(int i = 0; i < variables.size(); i++){
+            for(int j = 1; j < variables.size(); j++){
+                if(variables.get(i).contains(spl[0]) && variables.get(j).contains(spl[1])){
+                    iguales = spl[0] + "=" + spl[1];
+                    difAttributes = true;
+                }
+            }
+        }
+
     }
 
 
@@ -312,37 +268,56 @@ public class Listener extends DatalogBaseListener{
             }
         }
 
-        //Se crea el select
+        //Se crea el select y también se agregan los elementos a Group By
         String select = "SELECT ";
+        String groupBy = " GROUP BY ";
         for(String search : variablesBusqueda){
             for(String search2 : variablesSelect){
                 if(search2.contains(search) && !select.contains(search)){
                     select += search2 + ",";
+                    groupBy += search2 + ",";
                 }
             }
 
         }
 
+
         for(String elem : elementosWhere){
             if(elem.contains("count")){
-                select += "COUNT (*), ";
+                select += "COUNT (*) ";
             }
         }
 
         //Se crea el from
-        String from = "FROM " + predicados.get(0);
+
+        //Checamos si esta dentro de un schema
+        String from = "";
+        if(Main.schema.length() > 0){
+            from = "FROM " + Main.schema + "." + predicados.get(0) + " ";
+        }else{
+            from = "FROM " + predicados.get(0) + " ";
+        }
+
         colaPredicados.poll();
         for(int i = 1; i < predicados.size(); i++){
             if(!colaEstadosUnion.isEmpty()){
+                if(from.length() > 0){
+                    from = from.substring(0, from.length()-1);
+                }
                 from += " JOIN " + predicados.get(i) + " ON ";
                 //Hay que poner el ON
                 String currentPredicado = colaPredicados.poll();
                 String un = colaEstadosUnion.poll();
-                for(String aux : variablesSelect){
-                    if(aux.contains(un)){
-                        from += aux + " = ";
+                if (difAttributes == true) {
+                    from += iguales + "=";
+                }else{
+                    for(String aux : variablesSelect){
+                        if(aux.contains(un)){
+                            from += aux + "=";
+                        }
                     }
                 }
+
 
 
             }
@@ -392,17 +367,40 @@ public class Listener extends DatalogBaseListener{
         }
 
         //Se acomodan los elementos de Where
-        String where = "Where ";
+            String where = "WHERE ";
         for(String w : newWhere){
-            where += w + ",";
+
+            String aux[] = w.split("\\.");
+            //System.out.println("AUX1 " + aux[0]);
+            System.out.println("w1 " + w);
+            if(!aux[1].equals(iguales) && !where.contains(aux[1])){
+                where += w + "AND ";
+            }
+
         }
 
+        where = where.substring(0,where.length()-4);
 
+        select = select.substring(0,select.length()-1);
+
+        from = from.substring(0,from.length()-1);
+
+        groupBy = groupBy.substring(0,groupBy.length()-1);
 
         System.out.println(select);
         System.out.println(from);
 
         System.out.println(where);
         System.out.println(Main.schema);
+
+
+        if(from.contains("ON")){
+            query = select + " " + from + " " + where + groupBy;
+        }else{
+            query = select + " " + from + " " + where;
+        }
+
+        System.out.println(query);
+
     }
 }

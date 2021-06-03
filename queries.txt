@@ -1,0 +1,7 @@
+?-respuesta(?nombre) :- estudiante(_, ?nombre, ?carrera),carrera="ISC".
+?-respuesta(?nombreCurso) :- curso(?claveCurso,?nombreCurso,_,_),grupo(?claveCurso,_,_,?profesorNombre),profesorNombre="Abel Bueno".
+?- respuesta(?nombreCurso) :- curso(?claveCurso,?nombreCurso,_,_),prerequisito(?claveCurso,?clavePrerequisito),claveCurso="Cb00005",claveCurso = clavePrerequisito.
+?- respuesta(?claveCurso, ?idGrupo, ?semestre, ?total) :- grupo (?claveCurso, ?idGrupo, ?semestre,?profesorNombre),integrante (?claveCurso,_,_,_,_),profesorNombre = "Abel Bueno",total = count <?claveCurso>.
+?- respuesta(?nombre, ?claveCurso, ?nombreCurso, ?semestre, ?calificacion) :- curso (?claveCurso, ?nombreCurso,_,_),integrante (?claveCurso,_,?semestre,?matricula,?calificacion),estudiante (?matricula,?nombre,?carrera),carrera = "LSCA".
+?- respuesta(?nombreCurso, ?claveCurso, ?semestre, ?total) :- integrante (?claveCurso,_,?semestre,_,?calificacion),curso (?claveCurso,?nombreCurso,_,_),semestre = 200213,calificacion >= 70,total = count <?claveCurso>.
+?- respuesta(?claveCurso, ?clavePrerequisito) :- prerequisito(?claveCurso, ?clavePrerequisito), claveCurso="Cb00005".

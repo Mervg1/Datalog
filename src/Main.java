@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.*;
 
 public class Main {
-    public static String schema = "hola";
+    public static String schema = "dbo";
     public static void main(String[] args) {
         // Create a variable for the connection string.
         SqlQuery database = new SqlQuery();
@@ -36,9 +36,10 @@ public class Main {
             walker.walk(listener, tree);
             // Create and execute an SQL statement that returns some data.
             //String SQL = "select EmployeeID, ManagerID from HumanResources.Employee";
-            String SQL = "select EmployeeID, ManagerID from HumanResources.Employee";
-
-            //database.getQuery(SQL);
+            //String SQL = "select EmployeeID, ManagerID from HumanResources.Employee";
+            String SQL = "SELECT estudiante.nombre FROM dbo.estudiante WHERE estudiante.carrera='ISC'";
+            String SQLPrueba = Listener.query;
+            database.getQuery(SQLPrueba);
 
 
         /*

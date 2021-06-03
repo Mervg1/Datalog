@@ -6,7 +6,7 @@ public class SqlQuery {
 
         // Create a variable for the connection string.
         String connectionUrl = "jdbc:sqlserver://localhost:1433;" +
-                "databaseName=AdventureWorks;integratedSecurity=false;";
+                "databaseName=escuela;integratedSecurity=false;";
 
         // Declare the JDBC objects.
         Connection con = null;
