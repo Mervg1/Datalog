@@ -63,13 +63,25 @@ public class DatalogBaseListener implements DatalogListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterR_rule(DatalogParser.R_ruleContext ctx) { }
+	@Override public void enterNormalRule(DatalogParser.NormalRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitR_rule(DatalogParser.R_ruleContext ctx) { }
+	@Override public void exitNormalRule(DatalogParser.NormalRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleQuery(DatalogParser.RuleQueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleQuery(DatalogParser.RuleQueryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -99,13 +111,49 @@ public class DatalogBaseListener implements DatalogListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAtom(DatalogParser.AtomContext ctx) { }
+	@Override public void enterInicioQueryRule(DatalogParser.InicioQueryRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAtom(DatalogParser.AtomContext ctx) { }
+	@Override public void exitInicioQueryRule(DatalogParser.InicioQueryRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPredicatew(DatalogParser.PredicatewContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPredicatew(DatalogParser.PredicatewContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWheree(DatalogParser.WhereeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWheree(DatalogParser.WhereeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNotAtooom(DatalogParser.NotAtooomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNotAtooom(DatalogParser.NotAtooomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -118,6 +166,18 @@ public class DatalogBaseListener implements DatalogListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVariosQueries(DatalogParser.VariosQueriesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWhere(DatalogParser.WhereContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhere(DatalogParser.WhereContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

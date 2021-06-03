@@ -16,35 +16,36 @@ public class DatalogParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, NOT=9, 
-		COUNT=10, AVG=11, SUM=12, MIN=13, MAX=14, IntegerLiteral=15, FloatingPointLiteral=16, 
-		BooleanLiteral=17, CharacterLiteral=18, StringLiteral=19, Predicate=20, 
-		Identifier=21, WS=22, COMMENT=23, MULTILINE_COMMENT=24;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		T__9=10, T__10=11, NOT=12, COUNT=13, AVG=14, SUM=15, MIN=16, MAX=17, IntegerLiteral=18, 
+		FloatingPointLiteral=19, BooleanLiteral=20, CharacterLiteral=21, StringLiteral=22, 
+		Predicate=23, Identifier=24, WS=25, COMMENT=26, MULTILINE_COMMENT=27;
 	public static final int
 		RULE_program = 0, RULE_fact = 1, RULE_literalList = 2, RULE_facts = 3, 
 		RULE_r_rule = 4, RULE_r_rules = 5, RULE_query = 6, RULE_atom = 7, RULE_atoms = 8, 
-		RULE_variableOrLiteral = 9, RULE_variableOrLiterals = 10, RULE_aggregateVariable = 11, 
-		RULE_aggregateOp = 12, RULE_variable = 13, RULE_predicate = 14, RULE_literal = 15;
+		RULE_where = 9, RULE_variableOrLiteral = 10, RULE_variableOrLiterals = 11, 
+		RULE_aggregateVariable = 12, RULE_aggregateOp = 13, RULE_variable = 14, 
+		RULE_predicate = 15, RULE_literal = 16;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"program", "fact", "literalList", "facts", "r_rule", "r_rules", "query", 
-			"atom", "atoms", "variableOrLiteral", "variableOrLiterals", "aggregateVariable", 
-			"aggregateOp", "variable", "predicate", "literal"
+			"atom", "atoms", "where", "variableOrLiteral", "variableOrLiterals", 
+			"aggregateVariable", "aggregateOp", "variable", "predicate", "literal"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'('", "')'", "'.'", "','", "':-'", "'?-'", "'<'", "'>'", "'not'", 
-			"'count'", "'avg'", "'sum'", "'min'", "'max'"
+			null, "'('", "')'", "'.'", "','", "':-'", "'?-'", "'='", "'>='", "'<='", 
+			"'>'", "'<'", "'not'", "'count'", "'avg'", "'sum'", "'min'", "'max'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, null, "NOT", "COUNT", 
-			"AVG", "SUM", "MIN", "MAX", "IntegerLiteral", "FloatingPointLiteral", 
+			null, null, null, null, null, null, null, null, null, null, null, null, 
+			"NOT", "COUNT", "AVG", "SUM", "MIN", "MAX", "IntegerLiteral", "FloatingPointLiteral", 
 			"BooleanLiteral", "CharacterLiteral", "StringLiteral", "Predicate", "Identifier", 
 			"WS", "COMMENT", "MULTILINE_COMMENT"
 		};
@@ -129,40 +130,40 @@ public class DatalogParser extends Parser {
 		enterRule(_localctx, 0, RULE_program);
 		int _la;
 		try {
-			setState(40);
+			setState(42);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(32);
+				setState(34);
 				facts();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(34);
+				setState(36);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 				case 1:
 					{
-					setState(33);
+					setState(35);
 					facts();
 					}
 					break;
 				}
-				setState(37);
+				setState(39);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==NOT || _la==Predicate) {
 					{
-					setState(36);
+					setState(38);
 					r_rules();
 					}
 				}
 
-				setState(39);
+				setState(41);
 				query();
 				}
 				break;
@@ -206,15 +207,15 @@ public class DatalogParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(42);
-			predicate();
-			setState(43);
-			match(T__0);
 			setState(44);
-			literalList();
+			predicate();
 			setState(45);
-			match(T__1);
+			match(T__0);
 			setState(46);
+			literalList();
+			setState(47);
+			match(T__1);
+			setState(48);
 			match(T__2);
 			}
 		}
@@ -257,21 +258,21 @@ public class DatalogParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(48);
+			setState(50);
 			literal();
-			setState(53);
+			setState(55);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__3) {
 				{
 				{
-				setState(49);
+				setState(51);
 				match(T__3);
-				setState(50);
+				setState(52);
 				literal();
 				}
 				}
-				setState(55);
+				setState(57);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -316,7 +317,7 @@ public class DatalogParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(57); 
+			setState(59); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -324,7 +325,7 @@ public class DatalogParser extends Parser {
 				case 1:
 					{
 					{
-					setState(56);
+					setState(58);
 					fact();
 					}
 					}
@@ -332,7 +333,7 @@ public class DatalogParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(59); 
+				setState(61); 
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
@@ -350,23 +351,48 @@ public class DatalogParser extends Parser {
 	}
 
 	public static class R_ruleContext extends ParserRuleContext {
+		public R_ruleContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_r_rule; }
+	 
+		public R_ruleContext() { }
+		public void copyFrom(R_ruleContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class RuleQueryContext extends R_ruleContext {
+		public AtomContext atom() {
+			return getRuleContext(AtomContext.class,0);
+		}
+		public QueryContext query() {
+			return getRuleContext(QueryContext.class,0);
+		}
+		public RuleQueryContext(R_ruleContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterRuleQuery(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitRuleQuery(this);
+		}
+	}
+	public static class NormalRuleContext extends R_ruleContext {
 		public AtomContext atom() {
 			return getRuleContext(AtomContext.class,0);
 		}
 		public AtomsContext atoms() {
 			return getRuleContext(AtomsContext.class,0);
 		}
-		public R_ruleContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_r_rule; }
+		public NormalRuleContext(R_ruleContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterR_rule(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterNormalRule(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitR_rule(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitNormalRule(this);
 		}
 	}
 
@@ -374,16 +400,37 @@ public class DatalogParser extends Parser {
 		R_ruleContext _localctx = new R_ruleContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_r_rule);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(61);
-			atom();
-			setState(62);
-			match(T__4);
-			setState(63);
-			atoms();
-			setState(64);
-			match(T__2);
+			setState(73);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+			case 1:
+				_localctx = new NormalRuleContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(63);
+				atom();
+				setState(64);
+				match(T__4);
+				setState(65);
+				atoms();
+				setState(66);
+				match(T__2);
+				}
+				break;
+			case 2:
+				_localctx = new RuleQueryContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(68);
+				atom();
+				setState(69);
+				match(T__4);
+				setState(70);
+				query();
+				setState(71);
+				match(T__2);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -425,17 +472,17 @@ public class DatalogParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67); 
+			setState(76); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(66);
+				setState(75);
 				r_rule();
 				}
 				}
-				setState(69); 
+				setState(78); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==NOT || _la==Predicate );
@@ -477,18 +524,48 @@ public class DatalogParser extends Parser {
 			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitInicioQuery(this);
 		}
 	}
+	public static class InicioQueryRuleContext extends QueryContext {
+		public R_ruleContext r_rule() {
+			return getRuleContext(R_ruleContext.class,0);
+		}
+		public InicioQueryRuleContext(QueryContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterInicioQueryRule(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitInicioQueryRule(this);
+		}
+	}
 
 	public final QueryContext query() throws RecognitionException {
 		QueryContext _localctx = new QueryContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_query);
 		try {
-			_localctx = new InicioQueryContext(_localctx);
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(71);
-			match(T__5);
-			setState(72);
-			atoms();
+			setState(84);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
+			case 1:
+				_localctx = new InicioQueryContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(80);
+				match(T__5);
+				setState(81);
+				atoms();
+				}
+				break;
+			case 2:
+				_localctx = new InicioQueryRuleContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(82);
+				match(T__5);
+				setState(83);
+				r_rule();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -503,27 +580,60 @@ public class DatalogParser extends Parser {
 	}
 
 	public static class AtomContext extends ParserRuleContext {
+		public AtomContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_atom; }
+	 
+		public AtomContext() { }
+		public void copyFrom(AtomContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class PredicatewContext extends AtomContext {
 		public PredicateContext predicate() {
 			return getRuleContext(PredicateContext.class,0);
 		}
 		public VariableOrLiteralsContext variableOrLiterals() {
 			return getRuleContext(VariableOrLiteralsContext.class,0);
 		}
+		public PredicatewContext(AtomContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterPredicatew(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitPredicatew(this);
+		}
+	}
+	public static class WhereeContext extends AtomContext {
+		public WhereContext where() {
+			return getRuleContext(WhereContext.class,0);
+		}
+		public WhereeContext(AtomContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterWheree(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitWheree(this);
+		}
+	}
+	public static class NotAtooomContext extends AtomContext {
 		public TerminalNode NOT() { return getToken(DatalogParser.NOT, 0); }
 		public AtomContext atom() {
 			return getRuleContext(AtomContext.class,0);
 		}
-		public AtomContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_atom; }
+		public NotAtooomContext(AtomContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterAtom(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterNotAtooom(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitAtom(this);
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitNotAtooom(this);
 		}
 	}
 
@@ -531,33 +641,41 @@ public class DatalogParser extends Parser {
 		AtomContext _localctx = new AtomContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_atom);
 		try {
-			setState(81);
+			setState(94);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case Predicate:
+			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
+			case 1:
+				_localctx = new PredicatewContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(74);
+				setState(86);
 				predicate();
-				setState(75);
+				setState(87);
 				match(T__0);
-				setState(76);
+				setState(88);
 				variableOrLiterals();
-				setState(77);
+				setState(89);
 				match(T__1);
 				}
 				break;
-			case NOT:
+			case 2:
+				_localctx = new WhereeContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(79);
+				setState(91);
+				where();
+				}
+				break;
+			case 3:
+				_localctx = new NotAtooomContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(92);
 				match(NOT);
-				setState(80);
+				setState(93);
 				atom();
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -608,24 +726,120 @@ public class DatalogParser extends Parser {
 			_localctx = new VariosQueriesContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(83);
+			setState(96);
 			atom();
-			setState(88);
+			setState(101);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__3) {
 				{
 				{
-				setState(84);
+				setState(97);
 				match(T__3);
-				setState(85);
+				setState(98);
 				atom();
 				}
 				}
-				setState(90);
+				setState(103);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class WhereContext extends ParserRuleContext {
+		public PredicateContext predicate() {
+			return getRuleContext(PredicateContext.class,0);
+		}
+		public LiteralContext literal() {
+			return getRuleContext(LiteralContext.class,0);
+		}
+		public WhereContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_where; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).enterWhere(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DatalogListener ) ((DatalogListener)listener).exitWhere(this);
+		}
+	}
+
+	public final WhereContext where() throws RecognitionException {
+		WhereContext _localctx = new WhereContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_where);
+		try {
+			setState(124);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(104);
+				predicate();
+				setState(105);
+				match(T__6);
+				setState(106);
+				literal();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(108);
+				predicate();
+				setState(109);
+				match(T__7);
+				setState(110);
+				literal();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(112);
+				predicate();
+				setState(113);
+				match(T__8);
+				setState(114);
+				literal();
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(116);
+				predicate();
+				setState(117);
+				match(T__9);
+				setState(118);
+				literal();
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(120);
+				predicate();
+				setState(121);
+				match(T__10);
+				setState(122);
+				literal();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -695,16 +909,16 @@ public class DatalogParser extends Parser {
 
 	public final VariableOrLiteralContext variableOrLiteral() throws RecognitionException {
 		VariableOrLiteralContext _localctx = new VariableOrLiteralContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_variableOrLiteral);
+		enterRule(_localctx, 20, RULE_variableOrLiteral);
 		try {
-			setState(94);
+			setState(129);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case Identifier:
 				_localctx = new VariableEnunContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(91);
+				setState(126);
 				variable();
 				}
 				break;
@@ -716,7 +930,7 @@ public class DatalogParser extends Parser {
 				_localctx = new LiteralEnunContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(92);
+				setState(127);
 				literal();
 				}
 				break;
@@ -728,7 +942,7 @@ public class DatalogParser extends Parser {
 				_localctx = new AggregateEnunContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(93);
+				setState(128);
 				aggregateVariable();
 				}
 				break;
@@ -770,26 +984,26 @@ public class DatalogParser extends Parser {
 
 	public final VariableOrLiteralsContext variableOrLiterals() throws RecognitionException {
 		VariableOrLiteralsContext _localctx = new VariableOrLiteralsContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_variableOrLiterals);
+		enterRule(_localctx, 22, RULE_variableOrLiterals);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(96);
+			setState(131);
 			variableOrLiteral();
-			setState(101);
+			setState(136);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__3) {
 				{
 				{
-				setState(97);
+				setState(132);
 				match(T__3);
-				setState(98);
+				setState(133);
 				variableOrLiteral();
 				}
 				}
-				setState(103);
+				setState(138);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -829,18 +1043,18 @@ public class DatalogParser extends Parser {
 
 	public final AggregateVariableContext aggregateVariable() throws RecognitionException {
 		AggregateVariableContext _localctx = new AggregateVariableContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_aggregateVariable);
+		enterRule(_localctx, 24, RULE_aggregateVariable);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(104);
+			setState(139);
 			aggregateOp();
-			setState(105);
-			match(T__6);
-			setState(106);
+			setState(140);
+			match(T__10);
+			setState(141);
 			variable();
-			setState(107);
-			match(T__7);
+			setState(142);
+			match(T__9);
 			}
 		}
 		catch (RecognitionException re) {
@@ -876,12 +1090,12 @@ public class DatalogParser extends Parser {
 
 	public final AggregateOpContext aggregateOp() throws RecognitionException {
 		AggregateOpContext _localctx = new AggregateOpContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_aggregateOp);
+		enterRule(_localctx, 26, RULE_aggregateOp);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(109);
+			setState(144);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << COUNT) | (1L << AVG) | (1L << SUM) | (1L << MIN) | (1L << MAX))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -922,11 +1136,11 @@ public class DatalogParser extends Parser {
 
 	public final VariableContext variable() throws RecognitionException {
 		VariableContext _localctx = new VariableContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_variable);
+		enterRule(_localctx, 28, RULE_variable);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(111);
+			setState(146);
 			match(Identifier);
 			}
 		}
@@ -967,12 +1181,12 @@ public class DatalogParser extends Parser {
 
 	public final PredicateContext predicate() throws RecognitionException {
 		PredicateContext _localctx = new PredicateContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_predicate);
+		enterRule(_localctx, 30, RULE_predicate);
 		try {
 			_localctx = new PredicadoContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(113);
+			setState(148);
 			match(Predicate);
 			}
 		}
@@ -1009,12 +1223,12 @@ public class DatalogParser extends Parser {
 
 	public final LiteralContext literal() throws RecognitionException {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_literal);
+		enterRule(_localctx, 32, RULE_literal);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(115);
+			setState(150);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IntegerLiteral) | (1L << FloatingPointLiteral) | (1L << BooleanLiteral) | (1L << CharacterLiteral) | (1L << StringLiteral))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1038,34 +1252,47 @@ public class DatalogParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\32x\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
-		"\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\3\2\3\2\5\2%\n"+
-		"\2\3\2\5\2(\n\2\3\2\5\2+\n\2\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\7\4\66"+
-		"\n\4\f\4\16\49\13\4\3\5\6\5<\n\5\r\5\16\5=\3\6\3\6\3\6\3\6\3\6\3\7\6\7"+
-		"F\n\7\r\7\16\7G\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\5\tT\n\t\3\n\3"+
-		"\n\3\n\7\nY\n\n\f\n\16\n\\\13\n\3\13\3\13\3\13\5\13a\n\13\3\f\3\f\3\f"+
-		"\7\ff\n\f\f\f\16\fi\13\f\3\r\3\r\3\r\3\r\3\r\3\16\3\16\3\17\3\17\3\20"+
-		"\3\20\3\21\3\21\3\21\2\2\22\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \2"+
-		"\4\3\2\f\20\3\2\21\25\2r\2*\3\2\2\2\4,\3\2\2\2\6\62\3\2\2\2\b;\3\2\2\2"+
-		"\n?\3\2\2\2\fE\3\2\2\2\16I\3\2\2\2\20S\3\2\2\2\22U\3\2\2\2\24`\3\2\2\2"+
-		"\26b\3\2\2\2\30j\3\2\2\2\32o\3\2\2\2\34q\3\2\2\2\36s\3\2\2\2 u\3\2\2\2"+
-		"\"+\5\b\5\2#%\5\b\5\2$#\3\2\2\2$%\3\2\2\2%\'\3\2\2\2&(\5\f\7\2\'&\3\2"+
-		"\2\2\'(\3\2\2\2()\3\2\2\2)+\5\16\b\2*\"\3\2\2\2*$\3\2\2\2+\3\3\2\2\2,"+
-		"-\5\36\20\2-.\7\3\2\2./\5\6\4\2/\60\7\4\2\2\60\61\7\5\2\2\61\5\3\2\2\2"+
-		"\62\67\5 \21\2\63\64\7\6\2\2\64\66\5 \21\2\65\63\3\2\2\2\669\3\2\2\2\67"+
-		"\65\3\2\2\2\678\3\2\2\28\7\3\2\2\29\67\3\2\2\2:<\5\4\3\2;:\3\2\2\2<=\3"+
-		"\2\2\2=;\3\2\2\2=>\3\2\2\2>\t\3\2\2\2?@\5\20\t\2@A\7\7\2\2AB\5\22\n\2"+
-		"BC\7\5\2\2C\13\3\2\2\2DF\5\n\6\2ED\3\2\2\2FG\3\2\2\2GE\3\2\2\2GH\3\2\2"+
-		"\2H\r\3\2\2\2IJ\7\b\2\2JK\5\22\n\2K\17\3\2\2\2LM\5\36\20\2MN\7\3\2\2N"+
-		"O\5\26\f\2OP\7\4\2\2PT\3\2\2\2QR\7\13\2\2RT\5\20\t\2SL\3\2\2\2SQ\3\2\2"+
-		"\2T\21\3\2\2\2UZ\5\20\t\2VW\7\6\2\2WY\5\20\t\2XV\3\2\2\2Y\\\3\2\2\2ZX"+
-		"\3\2\2\2Z[\3\2\2\2[\23\3\2\2\2\\Z\3\2\2\2]a\5\34\17\2^a\5 \21\2_a\5\30"+
-		"\r\2`]\3\2\2\2`^\3\2\2\2`_\3\2\2\2a\25\3\2\2\2bg\5\24\13\2cd\7\6\2\2d"+
-		"f\5\24\13\2ec\3\2\2\2fi\3\2\2\2ge\3\2\2\2gh\3\2\2\2h\27\3\2\2\2ig\3\2"+
-		"\2\2jk\5\32\16\2kl\7\t\2\2lm\5\34\17\2mn\7\n\2\2n\31\3\2\2\2op\t\2\2\2"+
-		"p\33\3\2\2\2qr\7\27\2\2r\35\3\2\2\2st\7\26\2\2t\37\3\2\2\2uv\t\3\2\2v"+
-		"!\3\2\2\2\f$\'*\67=GSZ`g";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\35\u009b\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
+		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+		"\3\2\3\2\5\2\'\n\2\3\2\5\2*\n\2\3\2\5\2-\n\2\3\3\3\3\3\3\3\3\3\3\3\3\3"+
+		"\4\3\4\3\4\7\48\n\4\f\4\16\4;\13\4\3\5\6\5>\n\5\r\5\16\5?\3\6\3\6\3\6"+
+		"\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6L\n\6\3\7\6\7O\n\7\r\7\16\7P\3\b\3\b\3"+
+		"\b\3\b\5\bW\n\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\5\ta\n\t\3\n\3\n\3\n\7"+
+		"\nf\n\n\f\n\16\ni\13\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3"+
+		"\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13\177\n\13\3"+
+		"\f\3\f\3\f\5\f\u0084\n\f\3\r\3\r\3\r\7\r\u0089\n\r\f\r\16\r\u008c\13\r"+
+		"\3\16\3\16\3\16\3\16\3\16\3\17\3\17\3\20\3\20\3\21\3\21\3\22\3\22\3\22"+
+		"\2\2\23\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"\2\4\3\2\17\23\3\2\24"+
+		"\30\2\u009b\2,\3\2\2\2\4.\3\2\2\2\6\64\3\2\2\2\b=\3\2\2\2\nK\3\2\2\2\f"+
+		"N\3\2\2\2\16V\3\2\2\2\20`\3\2\2\2\22b\3\2\2\2\24~\3\2\2\2\26\u0083\3\2"+
+		"\2\2\30\u0085\3\2\2\2\32\u008d\3\2\2\2\34\u0092\3\2\2\2\36\u0094\3\2\2"+
+		"\2 \u0096\3\2\2\2\"\u0098\3\2\2\2$-\5\b\5\2%\'\5\b\5\2&%\3\2\2\2&\'\3"+
+		"\2\2\2\')\3\2\2\2(*\5\f\7\2)(\3\2\2\2)*\3\2\2\2*+\3\2\2\2+-\5\16\b\2,"+
+		"$\3\2\2\2,&\3\2\2\2-\3\3\2\2\2./\5 \21\2/\60\7\3\2\2\60\61\5\6\4\2\61"+
+		"\62\7\4\2\2\62\63\7\5\2\2\63\5\3\2\2\2\649\5\"\22\2\65\66\7\6\2\2\668"+
+		"\5\"\22\2\67\65\3\2\2\28;\3\2\2\29\67\3\2\2\29:\3\2\2\2:\7\3\2\2\2;9\3"+
+		"\2\2\2<>\5\4\3\2=<\3\2\2\2>?\3\2\2\2?=\3\2\2\2?@\3\2\2\2@\t\3\2\2\2AB"+
+		"\5\20\t\2BC\7\7\2\2CD\5\22\n\2DE\7\5\2\2EL\3\2\2\2FG\5\20\t\2GH\7\7\2"+
+		"\2HI\5\16\b\2IJ\7\5\2\2JL\3\2\2\2KA\3\2\2\2KF\3\2\2\2L\13\3\2\2\2MO\5"+
+		"\n\6\2NM\3\2\2\2OP\3\2\2\2PN\3\2\2\2PQ\3\2\2\2Q\r\3\2\2\2RS\7\b\2\2SW"+
+		"\5\22\n\2TU\7\b\2\2UW\5\n\6\2VR\3\2\2\2VT\3\2\2\2W\17\3\2\2\2XY\5 \21"+
+		"\2YZ\7\3\2\2Z[\5\30\r\2[\\\7\4\2\2\\a\3\2\2\2]a\5\24\13\2^_\7\16\2\2_"+
+		"a\5\20\t\2`X\3\2\2\2`]\3\2\2\2`^\3\2\2\2a\21\3\2\2\2bg\5\20\t\2cd\7\6"+
+		"\2\2df\5\20\t\2ec\3\2\2\2fi\3\2\2\2ge\3\2\2\2gh\3\2\2\2h\23\3\2\2\2ig"+
+		"\3\2\2\2jk\5 \21\2kl\7\t\2\2lm\5\"\22\2m\177\3\2\2\2no\5 \21\2op\7\n\2"+
+		"\2pq\5\"\22\2q\177\3\2\2\2rs\5 \21\2st\7\13\2\2tu\5\"\22\2u\177\3\2\2"+
+		"\2vw\5 \21\2wx\7\f\2\2xy\5\"\22\2y\177\3\2\2\2z{\5 \21\2{|\7\r\2\2|}\5"+
+		"\"\22\2}\177\3\2\2\2~j\3\2\2\2~n\3\2\2\2~r\3\2\2\2~v\3\2\2\2~z\3\2\2\2"+
+		"\177\25\3\2\2\2\u0080\u0084\5\36\20\2\u0081\u0084\5\"\22\2\u0082\u0084"+
+		"\5\32\16\2\u0083\u0080\3\2\2\2\u0083\u0081\3\2\2\2\u0083\u0082\3\2\2\2"+
+		"\u0084\27\3\2\2\2\u0085\u008a\5\26\f\2\u0086\u0087\7\6\2\2\u0087\u0089"+
+		"\5\26\f\2\u0088\u0086\3\2\2\2\u0089\u008c\3\2\2\2\u008a\u0088\3\2\2\2"+
+		"\u008a\u008b\3\2\2\2\u008b\31\3\2\2\2\u008c\u008a\3\2\2\2\u008d\u008e"+
+		"\5\34\17\2\u008e\u008f\7\r\2\2\u008f\u0090\5\36\20\2\u0090\u0091\7\f\2"+
+		"\2\u0091\33\3\2\2\2\u0092\u0093\t\2\2\2\u0093\35\3\2\2\2\u0094\u0095\7"+
+		"\32\2\2\u0095\37\3\2\2\2\u0096\u0097\7\31\2\2\u0097!\3\2\2\2\u0098\u0099"+
+		"\t\3\2\2\u0099#\3\2\2\2\17&),9?KPV`g~\u0083\u008a";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
