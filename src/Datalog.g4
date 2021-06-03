@@ -18,7 +18,7 @@ grammar Datalog;
 // Stores data using facts or performs a query over existing/new facts
 program
     : facts
-    | facts? r_rules? query
+    | facts? r_rules? query?
     ;
 
 // Facts that represent ground truth information

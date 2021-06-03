@@ -1,12 +1,19 @@
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
-
+import java.sql.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        try {
+        // Create a variable for the connection string.
+        SqlQuery database = new SqlQuery();
 
+        // Declare the JDBC objects.
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        ResultSetMetaData rsmd;
+        try {
             //?-curso(?cc,?nombre,?unidades,?departamento),grupo(?cc,?idC,?semestre,"Abel Bueno").
             //profe(?x):-curso(?cc,?nombre,?unidades,?departamento),grupo(?cc,?idC,?semestre,"Abel Bueno").
 
@@ -26,7 +33,10 @@ public class Main {
             ParseTreeWalker walker = new ParseTreeWalker();
             Listener listener = new Listener();
             walker.walk(listener, tree);
-
+            // Create and execute an SQL statement that returns some data.
+            //String SQL = "select EmployeeID, ManagerID from HumanResources.Employee";
+            String SQL = "select EmployeeID, ManagerID from HumanResources.Employee";
+            database.getQuery(SQL);
 
 
         /*
