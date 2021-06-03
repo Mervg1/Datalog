@@ -47,15 +47,29 @@ public interface DatalogListener extends ParseTreeListener {
 	 */
 	void exitFacts(DatalogParser.FactsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DatalogParser#r_rule}.
+	 * Enter a parse tree produced by the {@code NormalRule}
+	 * labeled alternative in {@link DatalogParser#r_rule}.
 	 * @param ctx the parse tree
 	 */
-	void enterR_rule(DatalogParser.R_ruleContext ctx);
+	void enterNormalRule(DatalogParser.NormalRuleContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DatalogParser#r_rule}.
+	 * Exit a parse tree produced by the {@code NormalRule}
+	 * labeled alternative in {@link DatalogParser#r_rule}.
 	 * @param ctx the parse tree
 	 */
-	void exitR_rule(DatalogParser.R_ruleContext ctx);
+	void exitNormalRule(DatalogParser.NormalRuleContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RuleQuery}
+	 * labeled alternative in {@link DatalogParser#r_rule}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleQuery(DatalogParser.RuleQueryContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RuleQuery}
+	 * labeled alternative in {@link DatalogParser#r_rule}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleQuery(DatalogParser.RuleQueryContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DatalogParser#r_rules}.
 	 * @param ctx the parse tree
@@ -79,15 +93,53 @@ public interface DatalogListener extends ParseTreeListener {
 	 */
 	void exitInicioQuery(DatalogParser.InicioQueryContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DatalogParser#atom}.
+	 * Enter a parse tree produced by the {@code InicioQueryRule}
+	 * labeled alternative in {@link DatalogParser#query}.
 	 * @param ctx the parse tree
 	 */
-	void enterAtom(DatalogParser.AtomContext ctx);
+	void enterInicioQueryRule(DatalogParser.InicioQueryRuleContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DatalogParser#atom}.
+	 * Exit a parse tree produced by the {@code InicioQueryRule}
+	 * labeled alternative in {@link DatalogParser#query}.
 	 * @param ctx the parse tree
 	 */
-	void exitAtom(DatalogParser.AtomContext ctx);
+	void exitInicioQueryRule(DatalogParser.InicioQueryRuleContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Predicatew}
+	 * labeled alternative in {@link DatalogParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void enterPredicatew(DatalogParser.PredicatewContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Predicatew}
+	 * labeled alternative in {@link DatalogParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void exitPredicatew(DatalogParser.PredicatewContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Wheree}
+	 * labeled alternative in {@link DatalogParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void enterWheree(DatalogParser.WhereeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Wheree}
+	 * labeled alternative in {@link DatalogParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void exitWheree(DatalogParser.WhereeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NotAtooom}
+	 * labeled alternative in {@link DatalogParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void enterNotAtooom(DatalogParser.NotAtooomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NotAtooom}
+	 * labeled alternative in {@link DatalogParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void exitNotAtooom(DatalogParser.NotAtooomContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code VariosQueries}
 	 * labeled alternative in {@link DatalogParser#atoms}.
@@ -100,6 +152,16 @@ public interface DatalogListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariosQueries(DatalogParser.VariosQueriesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DatalogParser#where}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhere(DatalogParser.WhereContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DatalogParser#where}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhere(DatalogParser.WhereContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code VariableEnun}
 	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.
