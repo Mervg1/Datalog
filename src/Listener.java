@@ -7,6 +7,7 @@ public class Listener extends DatalogBaseListener{
     String literal = "";
     String predicado = "";
     String SQL = "";
+
     String var1 = "";
     String var2 = "";
     String var3 = "";
@@ -18,7 +19,6 @@ public class Listener extends DatalogBaseListener{
     Boolean var4Variable = false;
     Boolean var5Variable = false;
     Integer counterVariables = 0;
-
     //Nueva Lógica
     List<String> predicados = new ArrayList<String>();
     ArrayList<String> tipoDeValores = new ArrayList<String>();
@@ -401,6 +401,8 @@ public class Listener extends DatalogBaseListener{
 
         System.out.println(select);
         System.out.println(from);
+
         System.out.println(where);
+        System.out.println(Main.schema);
     }
 }

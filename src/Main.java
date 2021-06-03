@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.*;
 
 public class Main {
+    public static String schema = "hola";
     public static void main(String[] args) {
         // Create a variable for the connection string.
         SqlQuery database = new SqlQuery();
@@ -36,11 +37,12 @@ public class Main {
             // Create and execute an SQL statement that returns some data.
             //String SQL = "select EmployeeID, ManagerID from HumanResources.Employee";
             String SQL = "select EmployeeID, ManagerID from HumanResources.Employee";
-            database.getQuery(SQL);
+
+            //database.getQuery(SQL);
 
 
         /*
-        ParseTreeWalker walker = new ParseTreeWalker();
+        ParseTreeWalker walker = new ParseTreeWalker(); ?-respuesta(?EmployeeID,?ManagerID):- Employee(?EmployeeID,?ManagerID).
         MiListener listener = new MiListener();
         walker.walk(listener, tree);
         */
