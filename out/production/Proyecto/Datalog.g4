@@ -36,7 +36,8 @@ facts
 
 // Horn clauses or rules in the query
 r_rule
-    : atom ':-' atoms '.'
+    : atom ':-' atoms '.' #NormalRule
+    | atom ':-' query '.' #RuleQuery
     ;
 
 r_rules
@@ -45,16 +46,26 @@ r_rules
 
 query
     : '?-' atoms #InicioQuery
+    | '?-' r_rule #InicioQueryRule
     ;
 
 // Definition of atom (or goal) used in horn clauses (or rules)
 atom
-    : predicate '(' variableOrLiterals ')'
-    | NOT atom
+    : predicate '(' variableOrLiterals ')'     #Predicatew
+    | where             #Wheree
+    | NOT atom       #NotAtooom
     ;
 
 atoms
     : atom ( ',' atom )* #VariosQueries
+    ;
+
+where
+    : predicate '=' literal
+    | predicate '>=' literal
+    | predicate '<=' literal
+    | predicate '>' literal
+    | predicate '<' literal
     ;
 
 // Types of things allowed within arguments of rules
