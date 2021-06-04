@@ -3,34 +3,10 @@ import java.util.*;
 
 public class Listener extends DatalogBaseListener{
 
-
-    Integer counterVariables = 0;
-
-    List<String> predicados = new ArrayList<String>();
-    ArrayList<String> tipoDeValores = new ArrayList<String>();
-
-    // Crear un array con todos los elementos
-    ArrayList<String> arrayTodo = new ArrayList<String>();
-
-    //Se crea un array List de las variables y otro de las literales
-    ArrayList<String> variables = new ArrayList<String>();
-    ArrayList<String> literales = new ArrayList<String>();
-
-    String predicadoActual = "";
-    ArrayList<String> variablesSelect = new ArrayList<String>();
-
-    ArrayList<String> variablesBusqueda = new ArrayList<String>();
-
-    //Array List de elementos where
-    ArrayList<String> elementosWhere = new ArrayList<String>();
-
-    public static String query ="";
-
-    Boolean difAttributes = false;
-
-    String iguales = "";
-
     /*
+    QUERIES
+
+
     estudiante(matrícula,nombre,carrera)
     curso(claveCurso,nombreCurso,unidades,departamento)
     grupo(claveCurso,idGrupo,semestre,profesorNombre)
@@ -106,6 +82,36 @@ public class Listener extends DatalogBaseListener{
 
 
     * */
+
+
+    Integer counterVariables = 0;
+
+    List<String> predicados = new ArrayList<String>();
+    ArrayList<String> tipoDeValores = new ArrayList<String>();
+
+    // Crear un array con todos los elementos
+    ArrayList<String> arrayTodo = new ArrayList<String>();
+
+    //Se crea un array List de las variables y otro de las literales
+    ArrayList<String> variables = new ArrayList<String>();
+    ArrayList<String> literales = new ArrayList<String>();
+
+    String predicadoActual = "";
+    ArrayList<String> variablesSelect = new ArrayList<String>();
+
+    ArrayList<String> variablesBusqueda = new ArrayList<String>();
+
+    //Array List de elementos where
+    ArrayList<String> elementosWhere = new ArrayList<String>();
+
+    public static String query ="";
+
+    Boolean difAttributes = false;
+
+    String iguales = "";
+
+    Stack<String> backwards = new Stack<String>();
+
 
     @Override public void enterInicioQuery(DatalogParser.InicioQueryContext ctx) {
         //System.out.println("Aqui esta el query " + ctx.getText());
@@ -309,7 +315,22 @@ public class Listener extends DatalogBaseListener{
                 String currentPredicado = colaPredicados.poll();
                 String un = colaEstadosUnion.poll();
                 if (difAttributes == true) {
-                    from += iguales + "=";
+                    String ayuda[] = iguales.split("=");
+
+                    for(String f : ayuda){
+                        Integer counter = 0;
+                        for(String aux : variablesSelect){
+
+                            if(aux.contains(f)){
+                                if(counter == 0){
+                                    from += aux + "=";
+                                    counter += 1;
+                                }
+
+                            }
+                        }
+                    }
+                    //from += iguales + "=";
                 }else{
                     for(String aux : variablesSelect){
                         if(aux.contains(un)){
@@ -366,18 +387,55 @@ public class Listener extends DatalogBaseListener{
 
         }
 
+        //Checar si vamos a tener que cambiar los parametros para unir
+        String where = "WHERE ";
+        if(difAttributes == true){
+            System.out.println(newWhere.size());
+            for(int i = newWhere.size()-1; i < 0; i--){
+                System.out.println(newWhere.get(3));
+                String aux[] = newWhere.get(i).split("\\.");
+                //System.out.println("AUX1 " + aux[0]);
+                System.out.println("w1 " + newWhere.get(i));
+                if(!aux[1].equals(iguales) && !where.contains(aux[1])){
+                    where += newWhere.get(i) + "AND ";
+                }
+
+
+            }
+        }else{
+
+
+
+
+        }
+
         //Se acomodan los elementos de Where
-            String where = "WHERE ";
         for(String w : newWhere){
 
             String aux[] = w.split("\\.");
             //System.out.println("AUX1 " + aux[0]);
             System.out.println("w1 " + w);
-            if(!aux[1].equals(iguales) && !where.contains(aux[1])){
-                where += w + "AND ";
+            String blabla = "";
+            if(difAttributes == true){
+                if(!aux[1].equals(iguales) && blabla.contains(aux[1])){
+                    where += w + "AND ";
+                }else if(!aux[1].equals(iguales) && !blabla.contains(aux[1])){
+                    blabla = w;
+                    String aux2[] = blabla.split("\\.");
+                    if(!aux2[0].contains(predicados.get(0))){
+                        where += blabla + "AND ";
+                    }
+                }
+            }else{
+                if(!aux[1].equals(iguales) && !where.contains(aux[1])){
+                    where += w + "AND ";
+                }
             }
 
+
         }
+
+
 
         where = where.substring(0,where.length()-4);
 
