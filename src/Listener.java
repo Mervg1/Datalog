@@ -203,11 +203,11 @@ public class Listener extends DatalogBaseListener{
 
 
 
-            System.out.println(select + " " + from);
+            //System.out.println(select + " " + from);
 
 
             for(String elem : estadosUnion){
-                System.out.println("Estados unidos: " + elem);
+                //System.out.println("Estados unidos: " + elem);
             }
         }else{
             String from = "FROM " + predicados.get(0);
@@ -241,7 +241,7 @@ public class Listener extends DatalogBaseListener{
         String newElem = ctx.getText().replace("\"","\'" );
         elementosWhere.add(newElem);
         String spl[] = ctx.getText().split("=");
-        System.out.println("CONTAINS = "+spl[0] + "spl1 " + spl[1]);
+        //System.out.println("CONTAINS = "+spl[0] + "spl1 " + spl[1]);
         for(int i = 0; i < variables.size(); i++){
             for(int j = 1; j < variables.size(); j++){
                 if(variables.get(i).contains(spl[0]) && variables.get(j).contains(spl[1])){
@@ -278,10 +278,30 @@ public class Listener extends DatalogBaseListener{
         String select = "SELECT ";
         String groupBy = " GROUP BY ";
         for(String search : variablesBusqueda){
+            //System.out.println("variables busqieda " + search);
             for(String search2 : variablesSelect){
-                if(search2.contains(search) && !select.contains(search)){
+                //System.out.println("variables select " + search2);
+                String aux[] = search2.split("\\.");
+                List<String> addInfo= new ArrayList<String>();
+                if(aux[1].equals(search) && !select.contains(search)){
                     select += search2 + ",";
                     groupBy += search2 + ",";
+                    /*if(select.contains(search)){
+                        System.out.println(select + search);
+                        for(String help : addInfo){
+                            System.out.println(help + search);
+                            if(!help.equals(search)){
+                                addInfo.add(search);
+                                select += search2 + ",";
+                                groupBy += search2 + ",";
+                            }
+                        }
+
+                    }else{
+                        addInfo.add(search);
+
+                    }*/
+
                 }
             }
 
@@ -390,12 +410,12 @@ public class Listener extends DatalogBaseListener{
         //Checar si vamos a tener que cambiar los parametros para unir
         String where = "WHERE ";
         if(difAttributes == true){
-            System.out.println(newWhere.size());
+            //System.out.println(newWhere.size());
             for(int i = newWhere.size()-1; i < 0; i--){
-                System.out.println(newWhere.get(3));
+                //System.out.println(newWhere.get(3));
                 String aux[] = newWhere.get(i).split("\\.");
                 //System.out.println("AUX1 " + aux[0]);
-                System.out.println("w1 " + newWhere.get(i));
+                //System.out.println("w1 " + newWhere.get(i));
                 if(!aux[1].equals(iguales) && !where.contains(aux[1])){
                     where += newWhere.get(i) + "AND ";
                 }
@@ -414,7 +434,7 @@ public class Listener extends DatalogBaseListener{
 
             String aux[] = w.split("\\.");
             //System.out.println("AUX1 " + aux[0]);
-            System.out.println("w1 " + w);
+            //System.out.println("w1 " + w);
             String blabla = "";
             if(difAttributes == true){
                 if(!aux[1].equals(iguales) && blabla.contains(aux[1])){
@@ -445,11 +465,11 @@ public class Listener extends DatalogBaseListener{
 
         groupBy = groupBy.substring(0,groupBy.length()-1);
 
-        System.out.println(select);
+        /*System.out.println(select);
         System.out.println(from);
 
         System.out.println(where);
-        System.out.println(Main.schema);
+        System.out.println(Main.schema);*/
 
 
         if(from.contains("ON")){
@@ -458,7 +478,7 @@ public class Listener extends DatalogBaseListener{
             query = select + " " + from + " " + where;
         }
 
-        System.out.println(query);
+        //System.out.println("Este es el query en SQL: " + query);
 
     }
 }

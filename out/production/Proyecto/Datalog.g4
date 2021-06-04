@@ -73,6 +73,7 @@ variableOrLiteral
     : variable #VariableEnun
     | literal  #LiteralEnun
     | aggregateVariable #AggregateEnun
+    | '_' #Nothing
     ;
 
 variableOrLiterals
@@ -105,6 +106,8 @@ literal
 	|	BooleanLiteral
 	|	CharacterLiteral
 	|	StringLiteral
+	|	COUNT '<' variable '>'
+	|	predicate
 	;
 
 // Lexer rules

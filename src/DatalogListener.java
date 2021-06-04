@@ -199,6 +199,18 @@ public interface DatalogListener extends ParseTreeListener {
 	 */
 	void exitAggregateEnun(DatalogParser.AggregateEnunContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Nothing}
+	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterNothing(DatalogParser.NothingContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Nothing}
+	 * labeled alternative in {@link DatalogParser#variableOrLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitNothing(DatalogParser.NothingContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DatalogParser#variableOrLiterals}.
 	 * @param ctx the parse tree
 	 */
