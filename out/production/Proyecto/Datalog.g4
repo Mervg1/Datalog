@@ -66,6 +66,11 @@ where
     | predicate '<=' literal
     | predicate '>' literal
     | predicate '<' literal
+    | variable '=' literal
+    | variable '>=' literal
+    | variable '<=' literal
+    | variable '>' literal
+    | variable '<' literal
     ;
 
 // Types of things allowed within arguments of rules

@@ -37,35 +37,35 @@ public class Main {
             switch (Integer.parseInt(opcionUsuario)){
                 case 1:
                     System.out.println("Copia tu query y después pegalo aqui y presiona command D.");
-                    System.out.println("El query de datalog es: \n ?-estudianteISC(?nombre) :- estudiante(_, ?nombre, ?carrera),carrera=\"ISC\".");
+                    System.out.println("El query de datalog es: \n ?-estudianteISC(?nombre) :- estudiante(_, ?nombre, ?carrera),?carrera=\"ISC\".");
                     break;
                 case 2:
                     System.out.println("Copia tu query y después pegalo aqui y presiona command D.");
-                    System.out.println("El query de datalog es: \n ?-respuesta(?nombreCurso) :- curso(?claveCurso,?nombreCurso,_,_),grupo(?claveCurso,_,_,?profesorNombre),profesorNombre=\"Abel Bueno\".");
+                    System.out.println("El query de datalog es: \n ?-respuesta(?nombreCurso) :- curso(?claveCurso,?nombreCurso,_,_),grupo(?claveCurso,_,_,?profesorNombre),?profesorNombre=\"Abel Bueno\".");
                     break;
                 case 3:
                     System.out.println("Copia tu query y después pegalo aqui y presiona command D.");
-                    System.out.println("El query de datalog es: \n ?-previos(?nombreCurso) :- curso(?claveCurso,?nombreCurso,_,_),prerequisito(?claveCurso,?clavePrerequisito),claveCurso=\"Cb00005\",claveCurso = clavePrerequisito.");
+                    System.out.println("El query de datalog es: \n ?-previos(?nombreCurso) :- curso(?claveCurso,?nombreCurso,_,_),prerequisito(?claveCurso,?clavePrerequisito),?claveCurso=\"Cb00005\",claveCurso = clavePrerequisito.");
                     break;
                 case 4:
                     System.out.println("Copia tu query y después pegalo aqui y presiona command D.");
-                    System.out.println("El query de datalog es: \n ?-infoEst(?claveCurso, ?idGrupo, ?semestre, ?total) :- grupo (?claveCurso, ?idGrupo, ?semestre,?profesorNombre),integrante (?claveCurso,_,_,_,_),profesorNombre = \"Abel Bueno\",total = count <?claveCurso>.");
+                    System.out.println("El query de datalog es: \n ?-infoEst(?claveCurso, ?idGrupo, ?semestre, ?total) :- grupo (?claveCurso, ?idGrupo, ?semestre,?profesorNombre),integrante (?claveCurso,_,_,_,_),?profesorNombre = \"Abel Bueno\",total = count <?claveCurso>.");
                     break;
                 case 5:
                     System.out.println("Copia tu query y después pegalo aqui y presiona command D.");
-                    System.out.println("El query de datalog es: \n ?-estudiantesLASCA(?nombre, ?claveCurso, ?nombreCurso, ?semestre, ?calificacion) :- curso (?claveCurso, ?nombreCurso,_,_),integrante (?claveCurso,_,?semestre,?matricula,?calificacion),estudiante (?matricula,?nombre,?carrera),calificacion >= 70,carrera = \"LSCA\".");
+                    System.out.println("El query de datalog es: \n ?-estudiantesLASCA(?nombre, ?claveCurso, ?nombreCurso, ?semestre, ?calificacion) :- curso (?claveCurso, ?nombreCurso,_,_),integrante (?claveCurso,_,?semestre,?matricula,?calificacion),estudiante (?matricula,?nombre,?carrera),?calificacion >= 70,?carrera = \"LSCA\".");
                     break;
                 case 6:
                     System.out.println("Copia tu query y después pegalo aqui y presiona command D.");
-                    System.out.println("El query de datalog es: \n ?-aprobados(?nombreCurso, ?claveCurso, ?semestre, ?total) :- integrante (?claveCurso,_,?semestre,_,?calificacion),curso (?claveCurso,?nombreCurso,_,_),semestre = 200213,calificacion >= 70,total = count <?claveCurso>.");
+                    System.out.println("El query de datalog es: \n ?-aprobados(?nombreCurso, ?claveCurso, ?semestre, ?total) :- integrante (?claveCurso,_,?semestre,_,?calificacion),curso (?claveCurso,?nombreCurso,_,_),semestre = 200213,?calificacion >= 70,total = count <?claveCurso>.");
                     break;
                 case 7:
                     System.out.println("Copia tu query y después pegalo aqui y presiona command D.");
-                    System.out.println("El query de datalog es: \n ?-clases(?claveCurso, ?clavePrerequisito) :- prerequisito(?claveCurso, ?clavePrerequisito), claveCurso=\"Cb00005\".");
+                    System.out.println("El query de datalog es: \n ?-clases(?claveCurso, ?clavePrerequisito) :- prerequisito(?claveCurso, ?clavePrerequisito), ?claveCurso=\"Cb00005\".");
                     break;
                 case 8:
                     System.out.println("Si quieres poner tu propio query tu query, escribelo aqui y presiona command D.");
-                    System.out.println("Porfavor sigue la sintaxis Guiandote de este query: \n ?-clases(?claveCurso, ?clavePrerequisito) :- prerequisito(?claveCurso, ?clavePrerequisito), claveCurso=\"Cb00005\".");
+                    System.out.println("Porfavor sigue la sintaxis Guiandote de este query: \n ?-clases(?claveCurso, ?clavePrerequisito) :- prerequisito(?claveCurso, ?clavePrerequisito), ?claveCurso=\"Cb00005\".");
                     break;
                 default:
                     System.out.println("Porfavor escoge una opción válida");

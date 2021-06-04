@@ -368,6 +368,10 @@ public class Listener extends DatalogBaseListener{
         //Primero ver que los elementos de where esten bien acomodados
         ArrayList<String> newWhere = new ArrayList<String>();
         for(String w : elementosWhere){
+            if(w.charAt(0) == '?'){
+                w = w.substring(1, w.length());
+            }
+
             if(w.contains("<") || w.contains(">")){
                 if(w.contains("<=")){
                     String aux[] = w.split("<=");
@@ -473,7 +477,15 @@ public class Listener extends DatalogBaseListener{
 
 
         if(from.contains("ON")){
-            query = select + " " + from + " " + where + groupBy;
+            //System.out.println(where.length());
+            if(where.length() < 3){
+                query = select + " " + from + groupBy;
+            }else{
+                query = select + " " + from + " " + where + groupBy;
+            }
+
+        }else if(where.length() < 3){
+            query = select + " " + from;
         }else{
             query = select + " " + from + " " + where;
         }
